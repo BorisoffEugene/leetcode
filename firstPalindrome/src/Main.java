@@ -1,0 +1,14 @@
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(firstPalindrome(new String[] {"abc","car","ada","racecar","cool"}));
+        System.out.println(firstPalindrome(new String[] {"notapalindrome","racecar"}));
+        System.out.println(firstPalindrome(new String[] {"def","ghi"}));
+    }
+
+    public static String firstPalindrome(String[] words) {
+        for (String word : words)
+            if (word.equals(new StringBuilder(word).reverse().toString())) return word;
+
+        return "";
+    }
+}
