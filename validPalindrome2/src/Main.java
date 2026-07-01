@@ -14,21 +14,22 @@ public class Main {
         int start = 0;
         int end = len - 1;
         char[] chars = s.toCharArray();
-        int notEqCnt = 0;
 
         while (start < end) {
-            if (chars[start] != chars[end]) {
-                if (notEqCnt > 0) return false;
+            if (chars[start] != chars[end])
+                return isPal(chars, start + 1, end) || isPal(chars, start, end - 1);
 
-                notEqCnt++;
+            start++;
+            end--;
+        }
 
-                if (chars[start + 1] != chars[end] && chars[start] != chars[end - 1]) return false;
+        return true;
+    }
 
-                if (chars[start + 1] == chars[end] && chars[start + 2] == chars[end - 1])
-                    start++;
-                else
-                    end--;
-            }
+    public static boolean isPal(char[] chars, int start, int end) {
+        while (start < end) {
+            if (chars[start] != chars[end])
+                return false;
 
             start++;
             end--;
