@@ -1,0 +1,24 @@
+public class Main {
+    public static void main(String[] args) {
+        TreeNode root = TreeNode.fromArr(new Integer[] {1,2,2,3,3,null,null,4,4});
+        System.out.println(isBalanced(root));
+    }
+
+    public static boolean isBalanced(TreeNode root) {
+        return checkHeight(root) != -1;
+    }
+
+    public static int checkHeight(TreeNode node) {
+        if (node == null) return 0;
+
+        int leftHeight = checkHeight(node.left);
+        if (leftHeight == -1) return -1;
+
+        int rightHeight = checkHeight(node.right);
+        if (rightHeight == -1) return -1;
+
+        if (Math.abs(leftHeight - rightHeight) > 1) return -1;
+
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+}
