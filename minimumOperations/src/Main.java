@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(minimumOperations(new int[][] {{3,2},{1,3},{3,4},{0,1}}));
+        System.out.println(minimumOperations(new int[][]{{3, 2}, {1, 3}, {3, 4}, {0, 1}}));
     }
 
     public static int minimumOperations(int[][] grid) {
