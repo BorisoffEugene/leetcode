@@ -1,15 +1,31 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        System.out.println(totalNumbers(new int[]{1,2,3,4}));
+        System.out.println(totalNumbers(new int[]{0,2,2}));
+        System.out.println(totalNumbers(new int[]{6,6,6}));
+        System.out.println(totalNumbers(new int[]{1,3,5}));
+    }
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+    public static int totalNumbers(int[] digits) {
+        int[] freq = new int[10];
+        for (int d : digits) freq[d]++;
+
+        int cnt = 0;
+
+        for (int d100 = 1; d100 < 10; d100++)
+            for (int d10 = 0; d10 < 10; d10++)
+                for (int d1 = 0; d1 < 9; d1 += 2) {
+                    freq[d100]--;
+                    freq[d10]--;
+                    freq[d1]--;
+
+                    if (freq[d100] >= 0 && freq[d10] >= 0 && freq[d1] >= 0) cnt++;
+
+                    freq[d100]++;
+                    freq[d10]++;
+                    freq[d1]++;
+                }
+
+        return cnt;
     }
 }
