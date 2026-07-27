@@ -1,0 +1,34 @@
+public class Main {
+    public static class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
+
+    public static void main(String[] args) {
+
+    }
+
+    public static ListNode swapPairs(ListNode head) {
+        if (head == null) return null;
+        if (head.next == null) return head;
+
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode curr = dummy;
+
+        while (curr.next != null && curr.next.next != null) {
+            ListNode first = curr.next;
+            ListNode second = curr.next.next;
+
+            first.next = second.next;
+            second.next = first;
+            curr.next = second;
+            curr = first;
+        }
+
+        return dummy.next;
+    }
+}
